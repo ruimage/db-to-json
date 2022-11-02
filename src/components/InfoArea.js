@@ -2,20 +2,20 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 InfoArea.propTypes = {
-  caption:PropTypes.string,
-  areaLabel:PropTypes.string,
-  placeholder:PropTypes.string
+  caption: PropTypes.string,
+  areaLabel: PropTypes.string,
+  placeholder: PropTypes.string
 };
 
-InfoArea.defaultProps={
-  placeholder:''
+InfoArea.defaultProps = {
+  placeholder: ''
 }
 
-function InfoArea({caption,areaLabel,placeholder}) {
+function InfoArea({caption, areaLabel, placeholder}) {
   return (
     <>
       <h2>{caption}</h2>
-      <textarea name={areaLabel} id={areaLabel}>{placeholder}</textarea>
+      <textarea name={areaLabel} id={areaLabel} defaultValue={placeholder}></textarea>
     </>
   );
 }
