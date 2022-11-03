@@ -2,6 +2,7 @@ import InfoArea from "./components/InfoArea";
 import Button from "./components/Button";
 import ConversionTypeSelector from "./components/ConversionTypeSelector";
 import convertDBMLStringToJSON from "./utils/converters";
+import styled from "@emotion/styled";
 
 const testPlaceholder = `//// -- LEVEL 1
 //// -- Schemas, Tables and References
@@ -49,24 +50,57 @@ const conversionTypes = [
 
 console.log(convertDBMLStringToJSON(testPlaceholder))
 
+const StyledApp = styled.div`
+  min-width: 90vw;
+  display: flex;
+  flex-direction: column;
+`
+
+const StyledMainTextAreas = styled.div`
+  display: grid;
+  grid-template-columns: 3fr 1fr 3fr;
+
+`
+
+const StyledGridFirstColumn = styled.div`
+  grid-column-start: 1;
+  grid-column-end: 2;
+`
+
+const StyledGridLastColumn = styled.div`
+  grid-column-start: -1;
+  grid-column-end: -2;
+`
+
+
 function App() {
   return (
-    <>
+    <StyledApp>
       <h1>DB to JSON & DOC</h1>
       <p>Этот сайт поможет вам преобразовать структуру БД с сайта dbdiagram.io в заготовку JSON-ов и документации.
         Пример структуры БД.</p>
 
-      <InfoArea areaLabel='bdStructure' caption='Структура БД' placeholder={testPlaceholder}/>
-      <InfoArea areaLabel='JSONStructure' caption='Заготовка JSON'/>
+      <StyledMainTextAreas>
+        <StyledGridFirstColumn>
+          <InfoArea
+            areaLabel='bdStructure'
+            caption='Структура БД'
+            placeholder={testPlaceholder}/>
+        </StyledGridFirstColumn>
 
+        <StyledGridLastColumn>
+          <InfoArea
+            areaLabel='JSONStructure'
+            caption='Заготовка JSON'/>
+        </StyledGridLastColumn>
+
+      </StyledMainTextAreas>
       <ConversionTypeSelector types={conversionTypes}/>
       <Button caption='TO DOC TO JSON'/>
 
       <InfoArea areaLabel='JSONStructure' caption='Заготовка документации'/>
       <Button caption='Смотреть инструкцию'/>
-
-
-    </>
+    </StyledApp>
   );
 }
 
