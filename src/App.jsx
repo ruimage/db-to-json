@@ -75,8 +75,10 @@ function App() {
         </StyledGridLastColumn>
 
       </StyledMainTextAreas>
-      <ConversionTypeSelector types={conversionTypes} />
-      <Button caption="TO DOC TO JSON" />
+      <StyledControls>
+        <ConversionTypeSelector types={conversionTypes} />
+        <Button caption="TO DOC TO JSON" />
+      </StyledControls>
 
       <InfoArea areaLabel="JSONStructure" caption="Заготовка документации" />
       <Button caption="Смотреть инструкцию" />
@@ -85,14 +87,16 @@ function App() {
 }
 
 const StyledApp = styled.div`
-  min-width: 90vw;
+
+  max-width: 80vw;
+  margin: auto;
   display: flex;
   flex-direction: column;
 `;
 
 const StyledMainTextAreas = styled.div`
   display: grid;
-  grid-template-columns: 3fr 1fr 3fr;
+  grid-template-columns: 3fr 0.1fr 3fr;
 
 `;
 
@@ -104,6 +108,11 @@ const StyledGridFirstColumn = styled.div`
 const StyledGridLastColumn = styled.div`
   grid-column-start: -1;
   grid-column-end: -2;
+`;
+
+const StyledControls = styled.div`
+  display: flex;
+  justify-content: space-between;
 `;
 
 export default App;

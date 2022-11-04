@@ -1,9 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import styled from '@emotion/styled';
 
 function ConversionTypeSelector({ types }) {
   return (
-    <select name="conversion">
+    <StyledSelect name="conversion">
       {types.map((curConversionType, conversionTypeIndex) => (
         <option
           key={curConversionType}
@@ -12,9 +13,13 @@ function ConversionTypeSelector({ types }) {
           {curConversionType}
         </option>
       ))}
-    </select>
+    </StyledSelect>
   );
 }
+
+const StyledSelect = styled.select`
+  width: 15rem;
+`;
 
 ConversionTypeSelector.propTypes = {
   // eslint-disable-next-line react/forbid-prop-types,react/require-default-props
