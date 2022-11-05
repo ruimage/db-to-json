@@ -1,5 +1,6 @@
 /* eslint-disable no-param-reassign */
 import {createSlice} from '@reduxjs/toolkit';
+import convertDBMLStringToJSON from "../utils/converters";
 
 const initialState = {
   dbmlScheme: '',
@@ -15,10 +16,15 @@ export const SchemeDataSlice = createSlice({
       state.dbmlScheme = action.payload;
     },
     setJson: (state, action) => {
-      state.jsonScheme = action.payload;
+      try {
+        state.jsonScheme = convertDBMLStringToJSON(action.payload);
+      } catch (e) {
+        state.jsonScheme = e.message
+      }
     },
     setMD: (state, action) => {
       state.mdscheme = action.payload;
+      
     },
   },
 });
