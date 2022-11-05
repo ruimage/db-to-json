@@ -1,8 +1,8 @@
 import styled from '@emotion/styled';
 import React from 'react';
-import InfoArea from './components/InfoArea';
-import Button from './components/Button';
-import ConversionTypeSelector from './components/ConversionTypeSelector';
+import InfoArea from './common-components/info-area';
+import Button from './common-components/button';
+import ConversionTypeSelector from './common-components/conversion-type-selector';
 
 const conversionTypes = [
   'GitLab',

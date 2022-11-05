@@ -1,5 +1,5 @@
 import React from 'react';
-import InfoArea from './components/InfoArea';
+import InfoArea from './common-components/info-area';
 
 function InfoAreaDbml() {
   return (
