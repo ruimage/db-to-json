@@ -3,6 +3,8 @@ import React from 'react';
 import InfoArea from './common-components/info-area';
 import Button from './common-components/button';
 import ConversionTypeSelector from './common-components/conversion-type-selector';
+import InfoAreaDbml from './info-area-dbml';
+import InfoAreaJSON from './info-area-json';
 
 const conversionTypes = [
   'GitLab',
@@ -21,28 +23,23 @@ function App() {
       </p>
 
       <StyledMainTextAreas>
+
         <StyledGridFirstColumn>
-          <InfoArea
-            areaLabel="bdStructure"
-            caption="Структура БД"
-          />
+          <InfoAreaDbml/>
         </StyledGridFirstColumn>
 
         <StyledGridLastColumn>
-          <InfoArea
-            areaLabel="JSONStructure"
-            caption="Заготовка JSON"
-          />
+          <InfoAreaJSON/>
         </StyledGridLastColumn>
 
       </StyledMainTextAreas>
       <StyledControls>
-        <ConversionTypeSelector types={conversionTypes} />
-        <Button caption="TO DOC TO JSON" />
+        <ConversionTypeSelector types={conversionTypes}/>
+        <Button caption="TO DOC TO JSON"/>
       </StyledControls>
 
-      <InfoArea areaLabel="JSONStructure" caption="Заготовка документации" />
-      <Button caption="Смотреть инструкцию" />
+      <InfoArea areaLabel="JSONStructure" caption="Заготовка документации"/>
+      <Button caption="Смотреть инструкцию"/>
     </StyledApp>
   );
 }
