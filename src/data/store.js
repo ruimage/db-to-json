@@ -1,8 +1,11 @@
-import { configureStore } from '@reduxjs/toolkit';
+import {configureStore} from '@reduxjs/toolkit';
+import SchemeDataSliceReducer from "./dbml-slice";
 
 const store = configureStore(
   {
-    reducer: {},
+    reducer: {
+      schemes: SchemeDataSliceReducer
+    },
   },
 );
 
