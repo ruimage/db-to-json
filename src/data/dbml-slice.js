@@ -1,5 +1,5 @@
 /* eslint-disable no-param-reassign */
-import { createSlice } from '@reduxjs/toolkit';
+import {createSlice} from '@reduxjs/toolkit';
 
 const initialState = {
   dbmlScheme: '',
@@ -7,8 +7,8 @@ const initialState = {
   mdscheme: '',
 };
 
-export const dbmlSlice = createSlice({
-  name: 'dbmlData',
+export const SchemeDataSlice = createSlice({
+  name: 'SchemeData',
   initialState,
   reducers: {
     setDbml: (state, action) => {
@@ -23,5 +23,5 @@ export const dbmlSlice = createSlice({
   },
 });
 
-export const { setDbml, setJson, setMD } = dbmlSlice.actions;
-export default dbmlSlice.reducer;
+export const {setDbml, setJson, setMD} = SchemeDataSlice.actions;
+export default SchemeDataSlice.reducer;
