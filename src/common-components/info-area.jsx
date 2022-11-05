@@ -7,11 +7,11 @@ const StyledTextArea = styled.textarea`
   height: 25vh;
 `;
 
-function InfoArea({ caption, areaLabel, content }) {
+function InfoArea({caption, areaLabel, content, onChange}) {
   return (
     <>
       <h2>{caption}</h2>
-      <StyledTextArea name={areaLabel} id={areaLabel}>{content}</StyledTextArea>
+      <StyledTextArea name={areaLabel} id={areaLabel} value={content} onChange={onChange}></StyledTextArea>
     </>
   );
 }
@@ -22,6 +22,7 @@ InfoArea.propTypes = {
   // eslint-disable-next-line react/require-default-props
   areaLabel: PropTypes.string,
   content: PropTypes.string,
+  onChange: PropTypes.func
 };
 
 InfoArea.defaultProps = {
