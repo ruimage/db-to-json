@@ -8,7 +8,7 @@ const initialState = {
 };
 
 export const SchemeDataSlice = createSlice({
-  name: 'SchemeData',
+  name: 'schemes',
   initialState,
   reducers: {
     setDbml: (state, action) => {

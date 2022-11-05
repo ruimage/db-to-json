@@ -1,29 +1,21 @@
-import React, {useCallback, useEffect, useState} from 'react';
+import React, {useCallback} from 'react';
 import InfoArea from './common-components/info-area';
-import {useDispatch} from "react-redux";
-import {setJson} from "./data/dbml-slice";
+import {useSelector} from "react-redux";
+import {getJSONValue} from "./data/selectors";
 
 function InfoAreaJSON() {
 
 
-  const dispatch = useDispatch()
-  const [jsonData, setJsonData] = useState('')
+  const jsonData = useSelector(state => getJSONValue(state))
 
-  useEffect(() => {
-    //  console.log(useSelector(getjsonValue()))
-  }, [])
 
-  useEffect(() => {
-    dispatch(setJson(jsonData))
-  }, [jsonData])
-
-  const onChangejson = useCallback((event) => {
-    setJsonData(event.target.value)
+  const onCh = useCallback(() => {
+    return false
   })
 
 
   return (
-    <InfoArea areaLabel="json" caption="Заготовка JSON" content={jsonData} onChange={onChangejson}/>
+    <InfoArea areaLabel="json" caption="Заготовка JSON" content={jsonData} onChange={onCh}/>
   );
 }
 

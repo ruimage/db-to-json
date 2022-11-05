@@ -8,6 +8,7 @@ const StyledTextArea = styled.textarea`
 `;
 
 function InfoArea({caption, areaLabel, content, onChange}) {
+
   return (
     <>
       <h2>{caption}</h2>
@@ -27,5 +28,6 @@ InfoArea.propTypes = {
 
 InfoArea.defaultProps = {
   content: '',
+  onChange: undefined
 };
 export default InfoArea;
