@@ -1,26 +1,22 @@
 import styled from '@emotion/styled';
 import React from 'react';
 import Button from './common-components/button';
-import ConversionTypeSelector from './common-components/conversion-type-selector';
 import InfoAreaDbml from './info-area-dbml';
 import InfoAreaJSON from './info-area-json';
 import InfoAreaMdtable from "./info-area-mdtable";
 
-const conversionTypes = [
-  'GitLab',
-  'Confluence (макрос Markup)',
-  'Confluence без обязательности (макрос Markup)',
-];
 
 function App() {
   return (
     <StyledApp>
-      <h1>DB to JSON & DOC</h1>
-      <p>
-        {/* eslint-disable-next-line max-len */}
-        Этот сайт поможет вам преобразовать структуру БД с сайта dbdiagram.io в заготовку JSON-ов и документации.
-        Пример структуры БД.
-      </p>
+
+      <StyledRowSection>
+        <h1>DB to JSON & MD</h1>
+        <p>
+          {/* eslint-disable-next-line max-len */}
+          Этот сайт поможет вам преобразовать структуру БД с сайта dbdiagram.io в заготовку JSON-ов и документации.
+        </p>
+      </StyledRowSection>
 
       <StyledMainTextAreas>
 
@@ -33,10 +29,6 @@ function App() {
         </StyledGridLastColumn>
 
       </StyledMainTextAreas>
-      <StyledControls>
-        <ConversionTypeSelector types={conversionTypes}/>
-        <Button caption="TO DOC TO JSON"/>
-      </StyledControls>
 
       <InfoAreaMdtable/>
       <Button caption="Смотреть инструкцию"/>
@@ -50,6 +42,12 @@ const StyledApp = styled.div`
   display: flex;
   flex-direction: column;
 `;
+
+const StyledRowSection = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+`
 
 const StyledMainTextAreas = styled.div`
   display: grid;
@@ -66,9 +64,5 @@ const StyledGridLastColumn = styled.div`
   grid-column-end: -2;
 `;
 
-const StyledControls = styled.div`
-  display: flex;
-  justify-content: space-between;
-`;
 
 export default App;

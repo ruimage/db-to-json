@@ -8,7 +8,6 @@ function InfoAreaDbml() {
   const dispatch = useDispatch()
   const [dbmlData, setDbmlData] = useState('')
 
-
   useEffect(() => {
     dispatch(setDbml(dbmlData))
     dispatch(setJson(dbmlData))

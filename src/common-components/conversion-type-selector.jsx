@@ -1,11 +1,17 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import styled from '@emotion/styled';
 
-function ConversionTypeSelector({ types }) {
+
+const conversionTypes = [
+  'GitLab',
+  'Confluence (макрос Markup)',
+  'Confluence без обязательности (макрос Markup)',
+];
+
+function ConversionTypeSelector() {
   return (
     <StyledSelect name="conversion">
-      {types.map((curConversionType, conversionTypeIndex) => (
+      {conversionTypes.map((curConversionType, conversionTypeIndex) => (
         <option
           key={curConversionType}
           value={conversionTypeIndex + 1}
@@ -21,9 +27,5 @@ const StyledSelect = styled.select`
   width: 15rem;
 `;
 
-ConversionTypeSelector.propTypes = {
-  // eslint-disable-next-line react/forbid-prop-types,react/require-default-props
-  types: PropTypes.array,
-};
 
 export default ConversionTypeSelector;
