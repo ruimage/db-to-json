@@ -1,6 +1,6 @@
 /* eslint-disable no-param-reassign */
 import {createSlice} from '@reduxjs/toolkit';
-import convertDBMLStringToJSON from "../utils/converters";
+import {convertDBMLStringToJSON} from "../utils/converters";
 
 const initialState = {
   dbmlScheme: '',
