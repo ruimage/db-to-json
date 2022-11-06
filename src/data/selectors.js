@@ -5,22 +5,21 @@ const selectSchemes = state => state.schemes
 
 export const selectDbmlValue = createDraftSafeSelector(selectSchemes, schemes => schemes.dbmlScheme)
 
+const getIsError = obj => obj.isError
+const getValue = (obj, isError) => {
+  if (isError) {
+    return obj.errorMessage
+  }
+  return obj.data
+}
 
 export const selectJsonSchemeObj = createDraftSafeSelector(selectSchemes, scheme => scheme.jsonScheme)
-export const selectIsErrorJSONConversion = createDraftSafeSelector(selectJsonSchemeObj, obj => obj.isError)
-export const selectJSONValue = createDraftSafeSelector(selectJsonSchemeObj, selectIsErrorJSONConversion, (shemeObj, isError) => {
-  if (isError) {
-    return shemeObj.errorMessage
-  }
-  return shemeObj.data
-})
+export const selectIsErrorJSONConversion = createDraftSafeSelector(selectJsonSchemeObj, getIsError)
+export const selectJSONValue = createDraftSafeSelector(selectJsonSchemeObj, selectIsErrorJSONConversion, getValue)
 
-export const selectMDValue = createDraftSafeSelector(selectJSONValue, selectIsErrorJSONConversion, (schemes, isError) => {
-  if (!isError) {
-    return schemes.mdscheme
-  }
-  return ''
-})
+export const selectMDSchemeObj = createDraftSafeSelector(selectSchemes, scheme => scheme.mdscheme)
+export const selectIsErrorMDNConversion = createDraftSafeSelector(selectMDSchemeObj, getIsError)
+export const selectMDValue = createDraftSafeSelector(selectMDSchemeObj, selectIsErrorMDNConversion, getValue)
 
 
 

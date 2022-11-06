@@ -4,8 +4,8 @@ import {markdownTable} from 'markdown-table'
 
 export const convertDBMLStringToJSON = (dbml) => ModelExporter.export(Parser.parse(dbml, 'dbml'), 'json', false);
 
-export const convertJsonToArray = (json) => jsonToTable(json)
+export const convertJsonToArray = (json) => jsonToTable(JSON.parse(json))
 
 export const convertArrayToMarkdownTable = array => markdownTable(array)
 
-export const convertJsonToMarkdown = json => markdownTable(jsonToTable(json))
+export const convertJsonToMarkdown = json => markdownTable(convertJsonToArray(json))

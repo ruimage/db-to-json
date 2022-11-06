@@ -1,6 +1,6 @@
 /* eslint-disable no-param-reassign */
 import {createSlice} from '@reduxjs/toolkit';
-import {convertDBMLStringToJSON} from "../utils/converters";
+import {convertDBMLStringToJSON, convertJsonToMarkdown} from "../utils/converters";
 
 const initialState = {
   dbmlScheme: '',
@@ -9,7 +9,11 @@ const initialState = {
     data: '',
     errorMessage: ''
   },
-  mdscheme: '',
+  mdscheme: {
+    isError: false,
+    data: '',
+    errorMessage: ''
+  },
 };
 
 export const SchemeDataSlice = createSlice({
@@ -23,15 +27,30 @@ export const SchemeDataSlice = createSlice({
       try {
         state.jsonScheme.isError = false
         state.jsonScheme.data = convertDBMLStringToJSON(action.payload);
+        state.jsonScheme.errorMessage = ''
       } catch (e) {
         state.jsonScheme.isError = true
+        state.jsonScheme.data = ''
         state.jsonScheme.errorMessage = e.message
       }
     },
     setMD: (state, action) => {
-      state.mdscheme = action.payload;
-
-    },
+      const jsonValue = action.payload
+      if (!jsonValue && !state.jsonScheme.isError) {
+        state.mdscheme.isError = false
+        state.mdscheme.data = ''
+        return
+      }
+      try {
+        state.mdscheme.data = convertJsonToMarkdown(jsonValue)
+        state.mdscheme.isError = false
+        state.mdscheme.errorMessage = ''
+      } catch (e) {
+        state.mdscheme.isError = true
+        state.mdscheme.data = ''
+        state.mdscheme.errorMessage = e
+      }
+    }
   },
 });
 

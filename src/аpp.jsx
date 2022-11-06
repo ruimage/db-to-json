@@ -1,10 +1,10 @@
 import styled from '@emotion/styled';
 import React from 'react';
-import InfoArea from './common-components/info-area';
 import Button from './common-components/button';
 import ConversionTypeSelector from './common-components/conversion-type-selector';
 import InfoAreaDbml from './info-area-dbml';
 import InfoAreaJSON from './info-area-json';
+import InfoAreaMdtable from "./info-area-mdtable";
 
 const conversionTypes = [
   'GitLab',
@@ -38,7 +38,7 @@ function App() {
         <Button caption="TO DOC TO JSON"/>
       </StyledControls>
 
-      <InfoArea areaLabel="JSONStructure" caption="Заготовка документации"/>
+      <InfoAreaMdtable/>
       <Button caption="Смотреть инструкцию"/>
     </StyledApp>
   );
