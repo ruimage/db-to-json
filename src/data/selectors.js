@@ -3,10 +3,24 @@ import {createDraftSafeSelector} from "@reduxjs/toolkit";
 
 const selectSchemes = state => state.schemes
 
+export const selectDbmlValue = createDraftSafeSelector(selectSchemes, schemes => schemes.dbmlScheme)
 
-export const getDbmlValue = createDraftSafeSelector(selectSchemes, schemes => schemes.dbmlScheme)
-export const getJSONValue = createDraftSafeSelector(selectSchemes, schemes => schemes.jsonScheme)
-export const getMDValue = createDraftSafeSelector(selectSchemes, schemes => schemes.mdScheme)
+
+export const selectJsonSchemeObj = createDraftSafeSelector(selectSchemes, scheme => scheme.jsonScheme)
+export const selectIsErrorJSONConversion = createDraftSafeSelector(selectJsonSchemeObj, obj => obj.isError)
+export const selectJSONValue = createDraftSafeSelector(selectJsonSchemeObj, selectIsErrorJSONConversion, (shemeObj, isError) => {
+  if (isError) {
+    return shemeObj.errorMessage
+  }
+  return shemeObj.data
+})
+
+export const selectMDValue = createDraftSafeSelector(selectJSONValue, selectIsErrorJSONConversion, (schemes, isError) => {
+  if (!isError) {
+    return schemes.mdscheme
+  }
+  return ''
+})
 
 
 

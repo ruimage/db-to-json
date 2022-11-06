@@ -4,7 +4,11 @@ import convertDBMLStringToJSON from "../utils/converters";
 
 const initialState = {
   dbmlScheme: '',
-  jsonScheme: '',
+  jsonScheme: {
+    isError: false,
+    data: '',
+    errorMessage: ''
+  },
   mdscheme: '',
 };
 
@@ -17,14 +21,16 @@ export const SchemeDataSlice = createSlice({
     },
     setJson: (state, action) => {
       try {
-        state.jsonScheme = convertDBMLStringToJSON(action.payload);
+        state.jsonScheme.isError = false
+        state.jsonScheme.data = convertDBMLStringToJSON(action.payload);
       } catch (e) {
-        state.jsonScheme = e.message
+        state.jsonScheme.isError = true
+        state.jsonScheme.errorMessage = e.message
       }
     },
     setMD: (state, action) => {
       state.mdscheme = action.payload;
-      
+
     },
   },
 });
