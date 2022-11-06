@@ -1,6 +1,5 @@
 import styled from '@emotion/styled';
 import React from 'react';
-import Button from './common-components/button';
 import InfoAreaDbml from './info-area-dbml';
 import InfoAreaJSON from './info-area-json';
 import InfoAreaMdtable from "./info-area-mdtable";
@@ -20,19 +19,16 @@ function App() {
       </StyledRowSection>
 
       <StyledMainTextAreas>
-
         <StyledGridFirstColumn>
           <InfoAreaDbml/>
         </StyledGridFirstColumn>
-
         <StyledGridLastColumn>
           <InfoAreaJSON/>
         </StyledGridLastColumn>
-
       </StyledMainTextAreas>
 
       <InfoAreaMdtable/>
-      <Button caption="Смотреть инструкцию"/>
+
     </StyledApp>
   );
 }
