@@ -14,7 +14,8 @@ function App() {
         <h1>DB to JSON & MD</h1>
         <p>
           {/* eslint-disable-next-line max-len */}
-          Этот сайт поможет вам преобразовать структуру БД с сайта dbdiagram.io в заготовку JSON-ов и документации.
+          Этот сайт поможет вам преобразовать структуру БД с сайта <a href="https://dbdiagram.io">dbdiagram.io </a> в
+          заготовку JSON-ов и документации.
         </p>
       </StyledRowSection>
 
