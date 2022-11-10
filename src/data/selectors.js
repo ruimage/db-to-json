@@ -21,7 +21,10 @@ export const selectMDSchemeObj = createDraftSafeSelector(selectSchemes, scheme =
 export const selectIsErrorMDNConversion = createDraftSafeSelector(selectMDSchemeObj, getIsError)
 export const selectMDValue = createDraftSafeSelector(selectMDSchemeObj, selectIsErrorMDNConversion, getValue)
 
-
-
-
+export const selectJsonObj = createDraftSafeSelector(selectSchemes, scheme => scheme.jsonObj)
+export const selectTableData = createDraftSafeSelector(selectJsonObj, jsonObj => {
+  if (jsonObj.isError) return null
+  if (!jsonObj.data?.schemas) return null
+  return jsonObj.data.schemas[0]?.tables
+})
 

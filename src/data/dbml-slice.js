@@ -7,13 +7,18 @@ const initialState = {
   jsonScheme: {
     isError: false,
     data: '',
-    errorMessage: ''
+    errorMessage: '',
   },
   mdscheme: {
     isError: false,
     data: '',
-    errorMessage: ''
+    errorMessage: '',
   },
+  jsonObj: {
+    data: null,
+    isError: false,
+    errorMessage: '',
+  }
 };
 
 export const SchemeDataSlice = createSlice({
@@ -50,9 +55,23 @@ export const SchemeDataSlice = createSlice({
         state.mdscheme.data = ''
         state.mdscheme.errorMessage = e
       }
+
+    },
+    setJsonObj: (state) => {
+      if (state.jsonScheme.data && !state.jsonScheme.isError) {
+        try {
+          state.jsonObj.data = JSON.parse(state.jsonScheme.data)
+          state.jsonObj.isError = false
+        } catch (e) {
+          state.jsonObj.isError = true
+          state.jsonObj.data = null
+          state.jsonObj.errorMessage = e
+        }
+      }
     }
+
   },
 });
 
-export const {setDbml, setJson, setMD} = SchemeDataSlice.actions;
+export const {setDbml, setJson, setMD, setJsonObj} = SchemeDataSlice.actions;
 export default SchemeDataSlice.reducer;
