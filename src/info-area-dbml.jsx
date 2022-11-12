@@ -15,7 +15,7 @@ function InfoAreaDbml() {
 
   const onChangeDbml = useCallback((event) => {
     setDbmlData(event.target.value)
-  })
+  }, [dbmlData])
 
   return (
     <InfoArea areaLabel="dbml" caption="Структура БД" content={dbmlData} onChange={onChangeDbml}/>
