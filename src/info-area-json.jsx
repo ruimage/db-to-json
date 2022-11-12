@@ -24,7 +24,7 @@ function InfoAreaJSON() {
 
 
   return (
-    <InfoArea areaLabel="json" caption="Заготовка JSON" content={topLevelTableDateJSON}/>
+    <InfoArea areaLabel="json" caption="Заготовка JSON" content={topLevelTableDateJSON} onChange={true}/>
   );
 }
 

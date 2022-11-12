@@ -7,7 +7,7 @@ function InfoAreaMdtable() {
 
   const mdTableData = useSelector(state => selectMDValue(state))
   return (
-    <InfoArea areaLabel='mdtable' caption='Заготовка документации' content={mdTableData}/>
+    <InfoArea areaLabel='mdtable' caption='Заготовка документации' content={mdTableData} onChange={true}/>
   );
 }
 
