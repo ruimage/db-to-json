@@ -1,13 +1,15 @@
 import React, {useEffect} from 'react';
 import InfoArea from './common-components/info-area';
 import {useDispatch, useSelector} from "react-redux";
-import {setJsonObj, setMD} from "./data/dbml-slice";
+import {setJsonObj} from "./data/dbml-slice";
 import {
   selectJSONValue,
   selectTableDataConvertedToJSON,
-  selectTopLevelTablesDataConvertedToJSON,
-  selectTopLevelTablesDataConvertedToJSONForMD
+  selectTopLevelTablesDataConvertedToJSON
 } from "./data/selectors";
+
+const dumb = () => {
+}
 
 function InfoAreaJSON() {
 
@@ -15,16 +17,14 @@ function InfoAreaJSON() {
   const jsonData = useSelector(state => selectJSONValue(state))
   const tableData = useSelector(state => selectTableDataConvertedToJSON(state))
   const topLevelTableDateJSON = useSelector(state => selectTopLevelTablesDataConvertedToJSON(state))
-  const topLevelTableDateJSONForMD = useSelector(state => selectTopLevelTablesDataConvertedToJSONForMD(state))
 
   useEffect(() => {
-    dispatch(setMD(topLevelTableDateJSONForMD))
     dispatch(setJsonObj())
   }, [jsonData, tableData])
 
 
   return (
-    <InfoArea areaLabel="json" caption="Заготовка JSON" content={topLevelTableDateJSON} onChange={true}/>
+    <InfoArea areaLabel="json" caption="Заготовка JSON" content={topLevelTableDateJSON} onChange={dumb}/>
   );
 }
 
