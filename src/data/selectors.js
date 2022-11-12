@@ -25,6 +25,37 @@ export const selectJsonObj = createDraftSafeSelector(selectSchemes, scheme => sc
 export const selectTableData = createDraftSafeSelector(selectJsonObj, jsonObj => {
   if (jsonObj.isError) return null
   if (!jsonObj.data?.schemas) return null
-  return jsonObj.data.schemas[0]?.tables
+
+  return jsonObj.data.schemas.map(ts => ts.tables).flat()
+})
+
+export const selectTableDataConvertedToJSON = createDraftSafeSelector(selectTableData, tables => {
+  if (!tables) return ''
+
+  return JSON.stringify(tables, undefined, 2)
+})
+
+export const selectTopLevelTablesData = createDraftSafeSelector(selectTableData, tables => {
+  if (!tables) return ''
+
+  const topLevelTables = tables.map(table => {
+    return {
+      name: table.name,
+      alias: table?.alias ? table?.alias : '',
+      note: table?.note ? table?.note : '',
+    }
+  })
+
+  return {tables: topLevelTables}
+})
+
+export const selectTopLevelTablesDataConvertedToJSON = createDraftSafeSelector(selectTopLevelTablesData, tables => {
+  if (!tables) return ''
+  return JSON.stringify(tables, undefined, 2)
+})
+
+export const selectTopLevelTablesDataConvertedToJSONForMD = createDraftSafeSelector(selectTopLevelTablesData, tablesObj => {
+  if (!tablesObj) return ''
+  return JSON.stringify(tablesObj.tables, undefined, 2)
 })
 
