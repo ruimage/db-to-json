@@ -100,7 +100,11 @@ export const selectTablesDataWithFieldsToJSON = createDraftSafeSelector(selectTa
 
 export const selectTablesDataWithFieldsToJSONForMD = createDraftSafeSelector(selectTablesDataWithFields, tablesObj => {
   if (!tablesObj) return ''
-  const fieldMDData = tablesObj.tables.map(table => table.fields).flat()
+
+  const fieldMDData = tablesObj.tables.map(table => (
+    table.fields.map((fieldData) => ({'table name': table.name, ...fieldData}))
+  )).flat()
+  
   return JSON.stringify(fieldMDData)
 })
 
