@@ -54,7 +54,6 @@ export const selectTopLevelTablesDataConvertedToJSON = createDraftSafeSelector(s
   return JSON.stringify(tables, undefined, 2)
 })
 
-
 export const selectTopLevelTablesDataConvertedToJSONForMD = createDraftSafeSelector(selectTopLevelTablesData, tablesObj => {
   if (!tablesObj) return ''
   return JSON.stringify(tablesObj.tables, undefined, 2)
@@ -98,3 +97,10 @@ export const selectTablesDataWithFieldsToJSON = createDraftSafeSelector(selectTa
   if (!tables) return ''
   return JSON.stringify(tables, undefined, 2)
 })
+
+export const selectTablesDataWithFieldsToJSONForMD = createDraftSafeSelector(selectTablesDataWithFields, tablesObj => {
+  if (!tablesObj) return ''
+  const fieldMDData = tablesObj.tables.map(table => table.fields).flat()
+  return JSON.stringify(fieldMDData)
+})
+
