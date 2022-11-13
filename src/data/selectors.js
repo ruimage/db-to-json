@@ -1,6 +1,5 @@
 import {createDraftSafeSelector} from "@reduxjs/toolkit";
 
-
 const selectSchemes = state => state.schemes
 
 export const selectDbmlValue = createDraftSafeSelector(selectSchemes, schemes => schemes.dbmlScheme)
@@ -50,7 +49,6 @@ export const selectTopLevelTablesData = createDraftSafeSelector(selectTableData,
   return {tables: topLevelTables}
 })
 
-
 export const selectTopLevelTablesDataConvertedToJSON = createDraftSafeSelector(selectTopLevelTablesData, tables => {
   if (!tables) return ''
   return JSON.stringify(tables, undefined, 2)
@@ -62,26 +60,41 @@ export const selectTopLevelTablesDataConvertedToJSONForMD = createDraftSafeSelec
   return JSON.stringify(tablesObj.tables, undefined, 2)
 })
 
-export const selectTablesDataWithFields = createDraftSafeSelector(selectTableData, tables => {
-  if (!tables) return ''
+export const selectTablesDataWithFields = createDraftSafeSelector(selectTableData,
+  tables => {
+    if (!tables) return ''
 
-  const topLevelTables = tables.map(table => {
-    return {
-      name: table.name,
-      alias: table?.alias ? table.alias : '',
-      note: table?.note ? table.note : '',
-      fields: table?.fields ? table.fields : ''
+    const extractValue = (obj, valueName) => {
+      return obj[valueName] ? obj[valueName] : ''
     }
+
+    const composeFields = (tableFields) => {
+      return tableFields.map((field) => {
+        const type = extractValue(field, 'type')
+        const name = extractValue(field, 'name')
+        const note = extractValue(field, 'note')
+        const args = extractValue(field, 'args')
+
+        let typeName = ''
+        if (type) typeName = type["type_name"]
+
+        return {name, type: typeName, args, note}
+      })
+    }
+
+    const topLevelTables = tables.map(table => {
+      return {
+        name: table.name,
+        alias: extractValue(table, 'alias'),
+        note: extractValue(table, 'note'),
+        fields: table?.fields ? composeFields(table.fields) : ''
+      }
+    })
+
+    return {tables: topLevelTables}
   })
-
-  return {tables: topLevelTables}
-})
-
 
 export const selectTablesDataWithFieldsToJSON = createDraftSafeSelector(selectTablesDataWithFields, tables => {
   if (!tables) return ''
   return JSON.stringify(tables, undefined, 2)
 })
-
-
-
